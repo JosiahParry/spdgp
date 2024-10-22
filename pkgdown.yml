@@ -2,7 +2,7 @@ pandoc: 3.1.11
 pkgdown: 2.1.1
 pkgdown_sha: ~
 articles: {}
-last_built: 2024-10-22T00:26Z
+last_built: 2024-10-22T15:16Z
 urls:
   reference: https://josiahparry.github.io/spdgp/reference
   article: https://josiahparry.github.io/spdgp/articles
