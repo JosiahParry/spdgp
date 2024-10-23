@@ -53,6 +53,21 @@
     <p>A <code>data.frame</code> of the spatially lagged variables.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">listw</span> <span class="op">&lt;-</span> <span class="fu"><a href="sim_grid_listw.html">sim_grid_listw</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">x_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_x.html">make_x</a></span><span class="op">(</span><span class="fl">100</span>, mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">1.2</span><span class="op">)</span>, var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span> </span></span>
+<span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">make_wx</span><span class="op">(</span><span class="va">x_vars</span>, <span class="va">listw</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     x_1_lag  x_2_lag</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 2.1753107 1.957174</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 1.2230313 1.373702</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 1.0538553 1.374858</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.9457799 1.331713</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 1.0683191 1.602990</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 1.0438814 1.362660</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 
