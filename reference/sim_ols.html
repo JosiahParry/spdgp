@@ -41,21 +41,31 @@
     </div>
 
     <div class="section level2">
+    <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
+
+
+<dl><dt id="arg-u">u<a class="anchor" aria-label="anchor" href="#arg-u"></a></dt>
+<dd><p>an error vector</p></dd>
+
+
+<dt id="arg-xb">xb<a class="anchor" aria-label="anchor" href="#arg-xb"></a></dt>
+<dd><p>predicted x values as calculated by <code><a href="make_xb.html">make_xb()</a></code></p></dd>
+
+</dl></div>
+    <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p><a href="https://pysal.org/spreg/generated/spreg.dgp.dgp_ols.html#spreg.dgp.dgp_ols" class="external-link"><code>spreg.dgp.dgp_ols</code></a></p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">u</span> <span class="op">=</span> <span class="fu"><a href="make_x.html">make_x</a></span><span class="op">(</span><span class="fl">50</span>, method <span class="op">=</span> <span class="st">"normal"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">x</span> <span class="op">=</span> <span class="fu"><a href="make_x.html">make_x</a></span><span class="op">(</span><span class="fl">50</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">xb</span> <span class="op">=</span> <span class="fu">make_xb</span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">dgp_ols</span><span class="op">(</span><span class="va">u</span>, <span class="va">xb</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in dgp_ols(u, xb):</span> could not find function "dgp_ols"</span>
-<span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(predvars, data, env):</span> object 'y' not found</span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'mod' not found</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">u</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_error.html">make_error</a></span><span class="op">(</span><span class="fl">50</span>, method <span class="op">=</span> <span class="st">"normal"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_x.html">make_x</a></span><span class="op">(</span><span class="fl">50</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">xb</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_xb.html">make_xb</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">sim_ols</span><span class="op">(</span><span class="va">u</span>, <span class="va">xb</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in model.frame.default(formula = y ~ x[[1]], drop.unused.levels = TRUE):</span> variable lengths differ (found for 'x[[1]]')</span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

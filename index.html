@@ -103,7 +103,7 @@
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/make_x.html">make_x</a></span><span class="op">(</span><span class="va">n</span>, method <span class="op">=</span> <span class="st">"uniform"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># create x's according to an intercept and beta value</span></span>
-<span><span class="va">x_beta</span> <span class="op">&lt;-</span> <span class="fu">make_xb</span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">x_beta</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/make_xb.html">make_xb</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Next, we’ll simulate the y and specify the autoregrssive parameter <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi><mo>=</mo><mn>0.5</mn></mrow><annotation encoding="application/x-tex">\rho = 0.5</annotation></semantics></math>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># simulate y from error and the x_beta</span></span>
