@@ -45,6 +45,43 @@
     <p><a href="https://pysal.org/spreg/generated/spreg.dgp.dgp_spdurbin.html#spreg.dgp.dgp_spdurbin" class="external-link"><code>spreg.dgp.dgp_spdurbin</code></a></p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">ncol</span> <span class="op">&lt;-</span> <span class="fl">20</span></span></span>
+<span class="r-in"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="va">ncol</span><span class="op">^</span><span class="fl">2</span></span></span>
+<span class="r-in"><span><span class="va">listw</span> <span class="op">&lt;-</span> <span class="fu"><a href="sim_grid_listw.html">sim_grid_listw</a></span><span class="op">(</span><span class="va">ncol</span>, <span class="va">ncol</span><span class="op">)</span>  <span class="co"># Create spatial weights for a grid</span></span></span>
+<span class="r-in"><span><span class="va">u</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_error.html">make_error</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>  <span class="co"># Simulate random errors</span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_x.html">make_x</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">n</span>,</span></span>
+<span class="r-in"><span>  mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">5</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.75</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  method <span class="op">=</span> <span class="st">"normal"</span></span></span>
+<span class="r-in"><span><span class="op">)</span>  <span class="co"># Generate x variables</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># create xb with intercept = 1, beta1 = 2, beta2 = -3</span></span></span>
+<span class="r-in"><span><span class="va">xb</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_xb.html">make_xb</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="op">-</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">wx</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_wx.html">make_wx</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">listw</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">wxg</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_wxg.html">make_wxg</a></span><span class="op">(</span><span class="va">wx</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">1.5</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">sim_durbin</span><span class="op">(</span><span class="va">u</span>, <span class="va">xb</span>, <span class="va">wxg</span>, <span class="va">listw</span>, rho <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># combine data </span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">y</span>, <span class="va">x</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># fit SDM</span></span></span>
+<span class="r-in"><span><span class="fu">spatialreg</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spatialreg/reference/ML_models.html" class="external-link">lagsarlm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">.</span>, <span class="va">df</span>, <span class="va">listw</span>, Durbin <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> spatialreg::lagsarlm(formula = y ~ ., data = df, listw = listw, </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Durbin = TRUE)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Type: mixed </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         rho (Intercept)         x_1         x_2     lag.x_1     lag.x_2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.3725901   2.0088068   2.0910376  -2.9380981  -1.6759722   0.8912780 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -581.025 </span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 
